@@ -1,7 +1,0 @@
-# PRINT FILE CONTENT
-read_file = open("configurations.ini", "r")
-content = read_file.read()
-print("Content of the config file are:\n")
-print(content)
-read_file.flush()
-read_file.close()
