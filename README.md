@@ -39,8 +39,6 @@ ctr-prediction/
 
 ---
 
-## Notebook summary (extracted)
-
 # Notebook Setup
 
 # Introduction and Background
