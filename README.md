@@ -1,3 +1,12 @@
+# Summary 
+
+Uses the Avazu CTR Kaggle dataset
+Builds a pipeline to:
+load and downsample / preprocess high-cardinality categorical features
+train a CTR model (LogReg / GBDT / etc.)
+evaluate on a validation set using CTR-specific metrics
+generate a Kaggle-submittable CSV
+
 # Click-Through Rate (CTR) Prediction
 
 This repository was generated from the notebook **Click Through Rate Prediction Final Submission.ipynb** and organized into a Python package + CLI scripts.
