@@ -25,8 +25,6 @@ python scripts/train.py --csv data/raw/train.csv --label <label_column_name>
 python scripts/predict.py --model models/model.joblib --input data/raw/test.csv --output predictions.csv
 ```
 
-# Results
-
 ## Project structure
 
 ```
@@ -59,3 +57,7 @@ This machine learning problem is titled Click-Through Rate Prediction. The data 
 # Exploratory Data Analysis
 
 Initially, in deciding how best to approach this machine learning problem, properly understanding the structure and nature of the data provided in the various datasets on the Kaggle website was of paramount importance. Specifically, the data came in the form two different data sets, the training data set and the test data set. Initially, I imported both datasets to examine them more closely. After importing them both, I began working with the training dataset to develop the machine learning model to be later employed on the test dataset. In importing th
+
+# Results
+
+
