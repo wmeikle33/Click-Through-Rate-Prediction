@@ -25,6 +25,8 @@ python scripts/train.py --csv data/raw/train.csv --label <label_column_name>
 python scripts/predict.py --model models/model.joblib --input data/raw/test.csv --output predictions.csv
 ```
 
+# Results
+
 ## Project structure
 
 ```
