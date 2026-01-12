@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-"""Train a baseline CTR model from a CSV."""
 import argparse
 from pathlib import Path
 from src.data import load_csv
