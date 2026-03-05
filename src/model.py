@@ -31,6 +31,7 @@ def train_eval_save(df, label: str, model_path: str, pipeline_path: str, random_
         try:
             y_prob = pipe.predict_proba(X_test)[:,1]
             metrics["auc"] = float(roc_auc_score(y_test, y_prob))
+            metrics["logloss"] = float(log_loss(y_test, y_prob))
         except Exception:
             pass
 
