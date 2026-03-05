@@ -3,7 +3,7 @@ from typing import Tuple
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import roc_auc_score, accuracy_score
+from sklearn.metrics import roc_auc_score, accuracy_score, log_loss
 from joblib import dump, load
 from .features import auto_preprocess, split_features_label
 
