@@ -1,3 +1,8 @@
+# Click-Through Rate (CTR) Prediction
+
+This repository was generated from the notebook **Click Through Rate Prediction Final Submission.ipynb** and organized into a Python package + CLI scripts.
+You can keep the original notebook under `notebooks/` and iterate on the modular code in `src/` and `scripts/`.
+
 # Summary 
 
 Uses the Avazu CTR Kaggle dataset
@@ -15,11 +20,6 @@ Download `train.csv` and `test.csv` from the competition page and place them her
 
 data/raw/train.csv
 data/raw/test.csv
-
-# Click-Through Rate (CTR) Prediction
-
-This repository was generated from the notebook **Click Through Rate Prediction Final Submission.ipynb** and organized into a Python package + CLI scripts.
-You can keep the original notebook under `notebooks/` and iterate on the modular code in `src/` and `scripts/`.
 
 ## Quickstart
 
