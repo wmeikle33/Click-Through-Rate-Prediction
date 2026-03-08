@@ -24,11 +24,10 @@ You can keep the original notebook under `notebooks/` and iterate on the modular
 ## Quickstart
 
 ```bash
-python -m venv .venv && source .venv/bin/activate  # Windows: .venv\Scripts\activate
+python -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
-
-python scripts/train.py --csv data/raw/train.csv --label <label_column_name>
-
+python scripts/train.py --csv data/raw/train.csv --label click
 python scripts/predict.py --model models/model.joblib --input data/raw/test.csv --output predictions.csv
 ```
 
