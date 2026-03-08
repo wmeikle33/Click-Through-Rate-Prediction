@@ -14,8 +14,12 @@ def logistic_pipeline():
         ("clf", clf)
     ])
     return pipe
-
+    
 def decision_tree_pipeline():
+    dec_tree_model = DecisionTreeClassifier()
+    return dec_tree_model
+
+def ensemble_decision_tree_pipeline():
     params = {
         'task': 'train',
         'boosting_type': 'gbdt',
