@@ -24,6 +24,8 @@ data/raw/test.csv
 ## Quickstart
 
 ```bash
+git clone https://github.com/wmeikle33/Click-Through-Rate-Prediction.git
+cd Click-Through-Rate-Prediction
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
