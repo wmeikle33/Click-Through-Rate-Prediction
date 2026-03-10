@@ -37,16 +37,22 @@ python scripts/predict.py --model models/model.joblib --input data/raw/test.csv 
 ## Project structure
 
 ```
-ctr-prediction/
-├── src/                   # reusable code (data, features, model)
-├── scripts/               # CLI entrypoints: train/predict
-├── notebooks/             # original notebook + exported .py
-├── data/raw/              # place raw data here (gitignored)
-├── models/                # saved models (gitignored)
-├── reports/figures/       # plots (gitignored)
-├── tests/                 # add unit tests if needed
+Click-Through-Rate-Prediction/
+├── pyproject.toml
 ├── requirements.txt
-└── README.md
+├── requirements-dev.txt
+├── src/
+│   └── ctr_prediction/
+│       ├── __init__.py
+│       ├── model.py
+│       ├── train.py
+│       ├── predict.py
+│       └── data.py
+├── scripts/
+│   ├── train.py
+│   └── predict.py
+└── tests/
+
 ```
 
 ## Notes
