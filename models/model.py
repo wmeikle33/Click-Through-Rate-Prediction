@@ -43,7 +43,7 @@ def ensemble_decision_tree_pipeline():
 def train_eval_save(df, label: str, model_path: str, pipeline_path: str, random_state: int = 42):
     X, y = split_features_label(df, label)
     prep = auto_preprocess(X)
-    pipe = build_pipeline()
+    pipe = logistic_pipeline()
     pipe.steps[0] = ("prep", prep)
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=random_state, stratify=y if len(getattr(y, 'unique', lambda: [])())<=20 else None)
