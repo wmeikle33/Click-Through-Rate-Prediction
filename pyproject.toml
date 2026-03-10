@@ -3,26 +3,32 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "click-thruogh-rate-prediction"
+name = "ctr-prediction"
 version = "0.1.0"
+description = "Click-through rate prediction pipeline for tabular ad data"
+readme = "README.md"
 requires-python = ">=3.10"
+authors = [
+  { name = "William Meikle" }
+]
 dependencies = [
-  "typer>=0.12",
-  "rich>=13",
-  "selenium>=4.15",
+  "pandas>=2.0",
+  "numpy>=1.24",
+  "scikit-learn>=1.3",
+  "joblib>=1.3",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "pytest>=7.0",
-    "pytest-cov>=4.0",
-    "ruff>=0.3",
-    "build",
-    "twine",
+  "pytest>=8.0",
+  "ruff>=0.6",
+  "black>=24.0",
+  "pre-commit>=3.0",
 ]
 
 [project.scripts]
-thesis-webscraper = "click-thruogh-rate-prediction.cli:main"
+ctr-train = "ctr_prediction.train:main"
+ctr-predict = "ctr_prediction.predict:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
@@ -31,12 +37,9 @@ package-dir = {"" = "src"}
 where = ["src"]
 
 [tool.ruff]
-line-length = 100
+line-length = 88
 target-version = "py310"
 
-[tool.ruff.lint]
-select = ["E", "F", "I", "UP", "B"]
-ignore = []
-
-[tool.ruff.format]
-quote-style = "double"
+[tool.black]
+line-length = 88
+target-version = ["py310"]
