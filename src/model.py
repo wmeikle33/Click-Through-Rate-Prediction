@@ -14,17 +14,14 @@ def logistic_pipeline():
         ("clf", clf)
     ])
     return pipe
-<<<<<<< HEAD
     
 def decision_tree_pipeline():
     dec_tree_model = DecisionTreeClassifier()
     return dec_tree_model
 
 def ensemble_decision_tree_pipeline():
-=======
 
 def decision_tree_pipeline():
->>>>>>> 2335b48 (New commit)
     params = {
         'task': 'train',
         'boosting_type': 'gbdt',
@@ -48,11 +45,8 @@ def decision_tree_pipeline():
 def train_eval_save(df, label: str, model_path: str, pipeline_path: str, random_state: int = 42):
     X, y = split_features_label(df, label)
     prep = auto_preprocess(X)
-<<<<<<< HEAD
     pipe = logistic_pipeline()
-=======
     pipe = build_pipeline()
->>>>>>> 2335b48 (New commit)
     pipe.steps[0] = ("prep", prep)
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=random_state, stratify=y if len(getattr(y, 'unique', lambda: [])())<=20 else None)
