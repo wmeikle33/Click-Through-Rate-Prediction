@@ -1,11 +1,9 @@
-<<<<<<< HEAD
 # Click-Through Rate (CTR) Prediction
 
 A reproducible CTR prediction pipeline for the Kaggle Avazu dataset.  This repo trains a baseline click-through-rate model from `train.csv`, evaluates it on a validation split, and generates a Kaggle-style submission from `test.csv`.  The current baseline uses Logistic Regression with preprocessing for numeric and categorical features. This repository was originally generated from the notebook **Click Through Rate Prediction Final Submission.ipynb** and organized into a Python package + CLI scripts.
 You can keep the original notebook under `notebooks/` and iterate on the modular code in `src/` and `scripts/`.
 
 =======
->>>>>>> 2335b48 (New commit)
 # Summary 
 
 Uses the Avazu CTR Kaggle dataset
@@ -24,7 +22,6 @@ Download `train.csv` and `test.csv` from the competition page and place them her
 data/raw/train.csv
 data/raw/test.csv
 
-<<<<<<< HEAD
 ## Quickstart
 
 ```bash
