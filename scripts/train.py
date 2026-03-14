@@ -1,8 +1,8 @@
 import argparse
 from pathlib import Path
-from src.data import load_csv
-from src.model import train_eval_save
-from src.config import Config
+from src.ctr_prediction.data import load_csv
+from src.ctr_prediction.model import train_eval_save
+from src.ctr_prediction.config import Config
 
 def main():
     ap = argparse.ArgumentParser()
