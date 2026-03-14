@@ -42,30 +42,35 @@ def decision_tree_pipeline():
                     early_stopping_rounds=500)
 
 
-def train_eval_save(df, label: str, model_path: str, pipeline_path: str, random_state: int = 42):
-    X, y = split_features_label(df, label)
-    prep = auto_preprocess(X)
-    pipe = logistic_pipeline()
-    pipe = build_pipeline()
-    pipe.steps[0] = ("prep", prep)
+def add_time_columns(df: pd.DataFrame, hour_col: str = "hour") -> pd.DataFrame:
+    out = df.copy()
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=random_state, stratify=y if len(getattr(y, 'unique', lambda: [])())<=20 else None)
+    # Avazu hour is usually like 14102100 -> YYMMDDHH
+    hour_str = out[hour_col].astype(str).str.zfill(8)
+    out["_date"] = pd.to_datetime(hour_str, format="%y%m%d%H", errors="raise")
+    out["_day"] = out["_date"].dt.day
+    return out
 
-    pipe.fit(X_train, y_train)
-    y_pred = pipe.predict(X_test)
 
-    metrics = {"accuracy": float(accuracy_score(y_test, y_pred))}
-    if hasattr(pipe, "predict_proba") and len(getattr(y_test, 'unique', lambda: set())()) == 2:
-        try:
-            y_prob = pipe.predict_proba(X_test)[:,1]
-            metrics["auc"] = float(roc_auc_score(y_test, y_prob))
-            metrics["logloss"] = float(log_loss(y_test, y_prob))
-        except Exception:
-            pass
+def time_based_split(
+    df: pd.DataFrame,
+    label: str,
+    hour_col: str = "hour",
+    valid_day: int | None = None,
+) -> Tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
+    df = add_time_columns(df, hour_col=hour_col)
 
-    dump(pipe, model_path)
-    dump(prep, pipeline_path)
-    return metrics
+    if valid_day is None:
+        valid_day = int(df["_day"].max())
 
-def load_model(path: str):
-    return load(path)
+    train_df = df[df["_day"] < valid_day].copy()
+    valid_df = df[df["_day"] == valid_day].copy()
+
+    if train_df.empty or valid_df.empty:
+        raise ValueError(
+            f"Time split failed: train rows={len(train_df)}, valid rows={len(valid_df)}, valid_day={valid_day}"
+        )
+
+    X_train, y_train = split_features_label(train_df.drop(columns=["_date", "_day"]), label)
+    X_valid, y_valid = split_features_label(valid_df.drop(columns=["_date", "_day"]), label)
+    return X_train, X_valid, y_train, y_valid
