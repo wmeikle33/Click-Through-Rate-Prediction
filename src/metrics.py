@@ -1,4 +1,5 @@
 from sklearn.metrics import accuracy, recall, precision
 
-Class Metrics:
+def metric_score(metric, preds, y_val:
+    return metric(preds, yval_
 
