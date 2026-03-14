@@ -40,9 +40,11 @@ python scripts/predict.py --model models/model.joblib --input data/raw/test.csv 
 
 ## Project structure
 
-```
+```bash
+
 Click-Through-Rate-Prediction/
 ├── pyproject.toml
+├── pre_commit_config.yaml
 ├── requirements.txt
 ├── requirements-dev.txt
 ├── src/
@@ -57,18 +59,7 @@ Click-Through-Rate-Prediction/
 │   └── predict.py
 └── tests/
 
-=======
-ctr-prediction/
-├── src/                   # reusable code (data, features, model)
-├── scripts/               # CLI entrypoints: train/predict
-├── notebooks/             # original notebook + exported .py
-├── data/raw/              # place raw data here (gitignored)
-├── models/                # saved models (gitignored)
-├── reports/figures/       # plots (gitignored)
-├── tests/                 # add unit tests if needed
-├── requirements.txt
-└── README.md
->>>>>>> 2335b48 (New commit)
+
 ```
 
 ## Notes
@@ -83,7 +74,6 @@ ctr-prediction/
 
 # Reproduce my Score
 
-<<<<<<< HEAD
 ```
 
 ## Reproduce my score
