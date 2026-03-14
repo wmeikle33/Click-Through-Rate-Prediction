@@ -3,7 +3,6 @@
 A reproducible CTR prediction pipeline for the Kaggle Avazu dataset.  This repo trains a baseline click-through-rate model from `train.csv`, evaluates it on a validation split, and generates a Kaggle-style submission from `test.csv`.  The current baseline uses Logistic Regression with preprocessing for numeric and categorical features. This repository was originally generated from the notebook **Click Through Rate Prediction Final Submission.ipynb** and organized into a Python package + CLI scripts.
 You can keep the original notebook under `notebooks/` and iterate on the modular code in `src/` and `scripts/`.
 
-=======
 # Summary 
 
 Uses the Avazu CTR Kaggle dataset
@@ -24,13 +23,6 @@ data/raw/test.csv
 
 ## Quickstart
 
-```bash
-git clone https://github.com/wmeikle33/Click-Through-Rate-Prediction.git
-cd Click-Through-Rate-Prediction
-python -m venv .venv
-source .venv/bin/activate
-pip install -e .
-=======
 # Click-Through Rate (CTR) Prediction
 
 This repository was generated from the notebook **Click Through Rate Prediction Final Submission.ipynb** and organized into a Python package + CLI scripts.
@@ -41,7 +33,6 @@ You can keep the original notebook under `notebooks/` and iterate on the modular
 ```bash
 python -m venv .venv
 source .venv/bin/activate
->>>>>>> 2335b48 (New commit)
 pip install -r requirements.txt
 python scripts/train.py --csv data/raw/train.csv --label click
 python scripts/predict.py --model models/model.joblib --input data/raw/test.csv --output predictions.csv
@@ -50,7 +41,6 @@ python scripts/predict.py --model models/model.joblib --input data/raw/test.csv 
 ## Project structure
 
 ```
-<<<<<<< HEAD
 Click-Through-Rate-Prediction/
 ├── pyproject.toml
 ├── requirements.txt
