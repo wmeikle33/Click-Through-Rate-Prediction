@@ -67,7 +67,7 @@ git clone https://github.com/wmeikle33/Click-Through-Rate-Prediction.git
 cd Click-Through-Rate-Prediction
 python -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+pip install -e .
 python scripts/train.py --csv data/raw/train.csv --label click
 python scripts/predict.py --model models/model.joblib --input data/raw/test.csv --output predictions.csv
 ```
