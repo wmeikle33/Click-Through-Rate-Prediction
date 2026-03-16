@@ -1,77 +1,65 @@
 from __future__ import annotations
-from typing import Tuple
+
+from pathlib import Path
+
 import pandas as pd
-from sklearn.linear_model import LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.pipeline import Pipeline
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import roc_auc_score, accuracy_score, log_loss
 from joblib import dump, load
-from lightgbm import LGBMClassifier
-from ctr_prediction.features import auto_preprocess, split_features_label
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, roc_auc_score
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import Pipeline
 
-def add_time_columns(df: pd.DataFrame, hour_col: str = "hour") -> pd.DataFrame:
-    out = df.copy()
-    hour_str = out[hour_col].astype(str).str.zfill(8)
-    out["_date"] = pd.to_datetime(hour_str, format="%y%m%d%H", errors="raise")
-    out["_day"] = out["_date"].dt.day
-    return out
+from .features import auto_preprocess, split_features_label
 
-def time_based_split(
+
+def build_pipeline(X: pd.DataFrame) -> Pipeline:
+    preprocessor = auto_preprocess(X)
+    classifier = LogisticRegression(max_iter=200)
+
+    return Pipeline(
+        steps=[
+            ("prep", preprocessor),
+            ("clf", classifier),
+        ]
+    )
+
+
+def train_eval_save(
     df: pd.DataFrame,
     label: str,
-    hour_col: str = "hour",
-    valid_day: int | None = None,
-) -> Tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
-    df = add_time_columns(df, hour_col=hour_col)
+    model_path: str,
+    random_state: int = 42,
+    test_size: float = 0.2,
+) -> dict[str, float]:
+    X, y = split_features_label(df, label)
 
-    if valid_day is None:
-        valid_day = int(df["_day"].max())
+    pipe = build_pipeline(X)
 
-    train_df = df[df["_day"] < valid_day].copy()
-    valid_df = df[df["_day"] == valid_day].copy()
+    stratify = y if y.nunique() <= 20 else None
+    X_train, X_val, y_train, y_val = train_test_split(
+        X,
+        y,
+        test_size=test_size,
+        random_state=random_state,
+        stratify=stratify,
+    )
 
-    if train_df.empty or valid_df.empty:
-        raise ValueError(
-            f"Time split failed: train rows={len(train_df)}, valid rows={len(valid_df)}, valid_day={valid_day}"
-        )
+    pipe.fit(X_train, y_train)
 
-    X_train, y_train = split_features_label(train_df.drop(columns=["_date", "_day"]), label)
-    X_valid, y_valid = split_features_label(valid_df.drop(columns=["_date", "_day"]), label)
-    return X_train, X_valid, y_train, y_valid
-
-def logistic_pipeline():
-    clf = LogisticRegression(max_iter=200)
-    pipe = Pipeline(steps=[
-        ("prep", None),
-        ("clf", clf)
-    ])
-    return pipe
-    
-def decision_tree_pipeline():
-    dec_tree_model = DecisionTreeClassifier()
-    pipe = Pipeline(steps=[
-        ("prep", None),
-        ("dec_tree_model", dec_tree_model)
-    ])
-    return pipe
-    
-def ensemble_decision_tree_pipeline():
-    params = {
-        'task': 'train',
-        'boosting_type': 'gbdt',
-        'objective': 'binary',
-        'metric': { 'binary_logloss'},
-        'num_leaves': 31, # defauly leaves(31) amount for each tree
-        'learning_rate': 0.03,
-        'feature_fraction': 0.7, # will select 70% features before training each tree
-        'bagging_fraction': 0.3, #feature_fraction, but this will random select part of data
-        'bagging_freq': 5, #  perform bagging at every 5 iteration
-        'verbose': 0
+    y_pred = pipe.predict(X_val)
+    metrics: dict[str, float] = {
+        "accuracy": float(accuracy_score(y_val, y_pred))
     }
-    
-    gbm = lgb.train(params,
-                    lgb_train,
-                    num_boost_round=5000,
-                    valid_sets=lgb_eval,
-                    early_stopping_rounds=500)
+
+    if hasattr(pipe, "predict_proba") and y.nunique() == 2:
+        y_prob = pipe.predict_proba(X_val)[:, 1]
+        metrics["auc"] = float(roc_auc_score(y_val, y_prob))
+
+    Path(model_path).parent.mkdir(parents=True, exist_ok=True)
+    dump(pipe, model_path)
+
+    return metrics
+
+
+def load_model(path: str):
+    return load(path)
