@@ -108,8 +108,6 @@ Click-Through-Rate-Prediction/
 
 ```
 
-## Reproduce my score
-
 To reproduce the baseline result shown above:
 
 1. Download Avazu `train.csv` and `test.csv` into `data/raw/`
