@@ -39,6 +39,13 @@ Model training
 Evaluation
 Kaggle submission generation
 
+## Feature Engineering
+
+Key feature transformations:
+One-hot encoding / hashing for categorical features
+Time-based features derived from timestamp
+Feature interaction terms
+
 ## Quickstart
 
 
