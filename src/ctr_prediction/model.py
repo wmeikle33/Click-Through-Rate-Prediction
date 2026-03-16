@@ -5,7 +5,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import roc_auc_score, accuracy_score, log_loss
 from joblib import dump, load
-from .features import auto_preprocess, split_features_label
+from ctr_prediction.features import auto_preprocess, split_features_label
 
 def add_time_columns(df: pd.DataFrame, hour_col: str = "hour") -> pd.DataFrame:
     out = df.copy()
