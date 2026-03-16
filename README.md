@@ -63,6 +63,8 @@ This repository was generated from the notebook **Click Through Rate Prediction 
 You can keep the original notebook under `notebooks/` and iterate on the modular code in `src/` and `scripts/`.
 
 ```bash
+git clone https://github.com/wmeikle33/Click-Through-Rate-Prediction.git
+cd Click-Through-Rate-Prediction
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
