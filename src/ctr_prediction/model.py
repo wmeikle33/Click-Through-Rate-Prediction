@@ -1,10 +1,13 @@
 from __future__ import annotations
 from typing import Tuple
+import pandas as pd
 from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import roc_auc_score, accuracy_score, log_loss
 from joblib import dump, load
+from lightgbm import LGBMClassifier
 from ctr_prediction.features import auto_preprocess, split_features_label
 
 def add_time_columns(df: pd.DataFrame, hour_col: str = "hour") -> pd.DataFrame:
