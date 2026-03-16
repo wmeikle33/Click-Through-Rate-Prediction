@@ -46,6 +46,16 @@ One-hot encoding / hashing for categorical features
 Time-based features derived from timestamp
 Feature interaction terms
 
+## Modeling
+
+Baseline model:
+Logistic Regression (fast, interpretable)
+Additional models tested:
+Gradient Boosting (LightGBM / XGBoost)
+Evaluation metric:
+Log Loss
+AUC
+
 ## Quickstart
 
 
