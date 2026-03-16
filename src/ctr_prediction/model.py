@@ -49,9 +49,9 @@ def decision_tree_pipeline():
     dec_tree_model = DecisionTreeClassifier()
     pipe = Pipeline(steps=[
         ("prep", None),
-        ("clf", clf)
+        ("dec_tree_model", dec_tree_model)
     ])
-    return dec_tree_model
+    return pipe
     
 def ensemble_decision_tree_pipeline():
     params = {
