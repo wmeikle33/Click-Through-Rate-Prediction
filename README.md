@@ -14,13 +14,14 @@ generate a Kaggle-submittable CSV
 
 ## Dataset (Avazu CTR Prediction)
 
-~40M training samples
-Highly sparse categorical features
-Binary classification (clicked vs not clicked)
+Dataset:
+   ~40M training samples
+   Highly sparse categorical features
+   Binary classification (clicked vs not clicked)
 Challenges:
-Extreme class imbalance
-Very high-cardinality categorical variables
-Need for efficient feature encoding
+   Extreme class imbalance
+   Very high-cardinality categorical variables
+   Need for efficient feature encoding
 
 Competition: Avazu Click-Through Rate Prediction (Kaggle)
 
@@ -28,6 +29,15 @@ Download `train.csv` and `test.csv` from the competition page and place them her
 
 data/raw/train.csv
 data/raw/test.csv
+
+## Approach
+
+Pipeline stages:
+Data preprocessing
+Feature encoding
+Model training
+Evaluation
+Kaggle submission generation
 
 ## Quickstart
 
