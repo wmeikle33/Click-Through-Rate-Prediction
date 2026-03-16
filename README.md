@@ -103,7 +103,3 @@ To reproduce the baseline result shown above:
    pip install -r requirements.txt
 
 ```
-
-=======
->>>>>>> 2335b48 (New commit)
-
