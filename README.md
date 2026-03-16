@@ -14,6 +14,14 @@ generate a Kaggle-submittable CSV
 
 ## Dataset (Avazu CTR Prediction)
 
+~40M training samples
+Highly sparse categorical features
+Binary classification (clicked vs not clicked)
+Challenges:
+Extreme class imbalance
+Very high-cardinality categorical variables
+Need for efficient feature encoding
+
 Competition: Avazu Click-Through Rate Prediction (Kaggle)
 
 Download `train.csv` and `test.csv` from the competition page and place them here:
@@ -23,12 +31,9 @@ data/raw/test.csv
 
 ## Quickstart
 
-# Click-Through Rate (CTR) Prediction
 
 This repository was generated from the notebook **Click Through Rate Prediction Final Submission.ipynb** and organized into a Python package + CLI scripts.
 You can keep the original notebook under `notebooks/` and iterate on the modular code in `src/` and `scripts/`.
-
-## Quickstart
 
 ```bash
 python -m venv .venv
