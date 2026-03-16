@@ -14,7 +14,6 @@ def add_time_columns(df: pd.DataFrame, hour_col: str = "hour") -> pd.DataFrame:
     out["_day"] = out["_date"].dt.day
     return out
 
-
 def time_based_split(
     df: pd.DataFrame,
     label: str,
