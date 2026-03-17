@@ -68,6 +68,7 @@ cd Click-Through-Rate-Prediction
 python -m venv .venv
 source .venv/bin/activate
 pip install -e .
+python scripts/download_data.py 
 python scripts/train.py --csv data/raw/train.csv --label click
 python scripts/predict.py --model models/model.joblib --input data/raw/test.csv --output predictions.csv
 ```
