@@ -1,3 +1,1 @@
-import ctr_prediction
-
-__all__ = ["data", "features", "model", "train", "predict"]
+__version__ = "0.1.0"
