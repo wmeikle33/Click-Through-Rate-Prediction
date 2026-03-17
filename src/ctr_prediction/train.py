@@ -35,7 +35,7 @@ def main():
         stratify=y,
     )
 
-    metrics = train_and_save(
+    metrics = train_eval_save(
         X_train=X_train,
         y_train=y_train,
         X_valid=X_valid,
