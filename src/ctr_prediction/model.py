@@ -21,7 +21,6 @@ def build_pipeline(X: pd.DataFrame) -> Pipeline:
         ]
     )
 
-
 def train_eval_save(
     df: pd.DataFrame,
     label: str,
