@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 
 from .data import load_csv
 from .features import split_features_label
-from .model import train_and_save
+from .model import train_eval_save
 
 
 def parse_args():
