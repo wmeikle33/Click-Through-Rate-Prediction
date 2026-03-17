@@ -1,6 +1,7 @@
 import subprocess
 import zipfile
 from pathlib import Path
+import sys
 
 
 DATASET = "avazu-ctr-prediction"
@@ -10,18 +11,17 @@ def download_from_kaggle(data_dir: Path):
     """Download dataset using Kaggle CLI."""
     print("Downloading dataset from Kaggle...")
 
-    subprocess.run(
-        [
-            "kaggle",
-            "competitions",
-            "download",
-            "-c",
-            DATASET,
-            "-p",
-            str(data_dir),
-        ],
-        check=True,
-    )
+    cmd = [
+        sys.executable,
+        "-m",
+        "kaggle",
+        "competitions",
+        "download",
+        "-c",
+        "avazu-ctr-prediction",
+        "-p",
+        str(output_dir),
+    ]
 
 
 def unzip_files(data_dir: Path):
