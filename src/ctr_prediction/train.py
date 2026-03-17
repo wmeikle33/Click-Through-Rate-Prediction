@@ -21,8 +21,10 @@ def parse_args():
 
 def main():
     args = parse_args()
+    csv_path = Path(args.csv).expanduser().resolve()
+    model_path = Path(args.model_out).expanduser().resolve()
 
-    df = load_csv(args.csv)
+    df = load_csv(csv_path)
     if args.label not in df.columns:
         raise ValueError(f"Label column '{args.label}' not found in {args.csv}")
 
