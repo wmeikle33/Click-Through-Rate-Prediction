@@ -67,7 +67,7 @@ git clone https://github.com/wmeikle33/Click-Through-Rate-Prediction.git
 cd Click-Through-Rate-Prediction
 python -m venv .venv
 source .venv/bin/activate
-pip install -e .
+pip install -e ".[data]"
 pip install kaggle
 python scripts/download_data.py 
 python scripts/train.py --csv data/raw/train.csv --label click
