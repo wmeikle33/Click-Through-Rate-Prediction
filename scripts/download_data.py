@@ -6,6 +6,8 @@ import sys
 
 DATASET = "avazu-ctr-prediction"
 
+data_dir = Path("data")
+
 data_dir.mkdir(parents=True, exist_ok=True)
 
 
