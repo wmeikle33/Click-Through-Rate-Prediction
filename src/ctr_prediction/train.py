@@ -4,20 +4,21 @@ from pathlib import Path
 from .data import load_csv
 from .model import train_eval_save
 
-DEFAULT_DATA = "data/raw/train.csv"
-
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+DEFAULT_MODEL_PATH = PROJECT_ROOT / "models" / "model.joblib"
+DEFAULT_DATA_PATH = PROJECT_ROOT / "data" / "raw" / "train.csv"
 
 def parse_args():
     ap = argparse.ArgumentParser()
     ap.add_argument(
         "--csv",
         default=DEFAULT_DATA,
-        help="Path to training CSV (default: data/raw/train.csv)",
+        help="Path to training CSV (default: str(DEFAULT_DATA_PATH)",
     )
     ap.add_argument("--label", default="click", help="Target column")
     ap.add_argument(
         "--model-out",
-        default="models/model.joblib",
+        default=str(DEFAULT_MODEL_PATH),
         help="Saved model path",
     )
     ap.add_argument("--test-size", type=float, default=0.2, help="Validation fraction")
