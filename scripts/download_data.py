@@ -6,6 +6,8 @@ import sys
 
 DATASET = "avazu-ctr-prediction"
 
+data_dir.mkdir(parents=True, exist_ok=True)
+
 
 def download_from_kaggle(data_dir: Path):
     """Download dataset using Kaggle CLI."""
@@ -20,7 +22,7 @@ def download_from_kaggle(data_dir: Path):
         "-c",
         "avazu-ctr-prediction",
         "-p",
-        str(output_dir),
+        str(data_dir),
     ]
 
 
