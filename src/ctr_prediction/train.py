@@ -5,15 +5,16 @@ from .data import load_csv
 from .model import train_eval_save
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_MODEL_PATH = PROJECT_ROOT / "models" / "model.joblib"
 DEFAULT_DATA_PATH = PROJECT_ROOT / "data" / "raw" / "train.csv"
+DEFAULT_MODEL_PATH = PROJECT_ROOT / "models" / "model.joblib"
+
 
 def parse_args():
     ap = argparse.ArgumentParser()
     ap.add_argument(
         "--csv",
-        default=DEFAULT_DATA,
-        help="Path to training CSV (default: str(DEFAULT_DATA_PATH)",
+        default=str(DEFAULT_DATA_PATH),
+        help="Path to training CSV",
     )
     ap.add_argument("--label", default="click", help="Target column")
     ap.add_argument(
@@ -40,7 +41,7 @@ def main():
     metrics = train_eval_save(
         df=df,
         label=args.label,
-        model_path=str(model_path),
+        model_path=model_path,
         random_state=args.random_state,
         test_size=args.test_size,
     )
