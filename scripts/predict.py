@@ -1,4 +1,4 @@
-from ctr_prediction.predict import main
+from s†ock_lstm.predict import main
 
 if __name__ == "__main__":
     main()
