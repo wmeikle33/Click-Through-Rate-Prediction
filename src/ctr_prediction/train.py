@@ -47,7 +47,7 @@ def main():
     )
 
     print(f"Saved model to: {model_path}")
-    print(f"accuracy={metrics['accuracy']:.6f}")
+    print(f"log_loss={metrics['log_loss']:.6f}")
     if "auc" in metrics:
         print(f"auc={metrics['auc']:.6f}")
 
