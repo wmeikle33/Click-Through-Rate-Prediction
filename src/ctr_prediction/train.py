@@ -31,7 +31,7 @@ def main():
     args = parse_args()
 
     csv_path = Path(args.csv).expanduser().resolve()
-    model_path = Path(args.model_out).expanduser().resolve()
+    model_path = Path(args.model_out)
 
     df = load_csv(csv_path)
 
