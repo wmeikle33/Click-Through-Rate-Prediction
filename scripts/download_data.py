@@ -39,7 +39,7 @@ def unzip_files(data_dir: Path):
 
 
 def main():
-    project_root = Path(__file__).resolve().parents[1]
+    project_root = Path(__file__).resolve().parents[2]
 
     raw_dir = project_root / "data" / "raw"
     raw_dir.mkdir(parents=True, exist_ok=True)
@@ -47,7 +47,9 @@ def main():
     download_from_kaggle(raw_dir)
     unzip_files(raw_dir)
 
-    print("Dataset ready in:", raw_dir)
+    print("Contents:", list(raw_dir.iterdir()))
+
+    print("Dataset ready in:", raw_dir.resolve())
 
 
 if __name__ == "__main__":
