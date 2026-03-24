@@ -108,6 +108,8 @@ Click-Through-Rate-Prediction/
 
 # Results
 
+The original notebook had a binary logloss of 0.3984388029554979.
+
 # Reproduce my Score
 
 ```
