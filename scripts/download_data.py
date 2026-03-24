@@ -2,6 +2,7 @@ import subprocess
 import zipfile
 from pathlib import Path
 import sys
+from kaggle.api.kaggle_api_extended import KaggleApi
 
 
 DATASET = "avazu-ctr-prediction"
@@ -12,20 +13,23 @@ data_dir.mkdir(parents=True, exist_ok=True)
 
 
 def download_from_kaggle(data_dir: Path):
-    """Download dataset using Kaggle CLI."""
-    print("Downloading dataset from Kaggle...")
 
-    cmd = [
-        sys.executable,
-        "-m",
-        "kaggle",
-        "competitions",
-        "download",
-        "-c",
-        "avazu-ctr-prediction",
-        "-p",
-        str(data_dir),
-    ]
+    data_dir = data_dir.resolve()
+    data_dir.mkdir(parents=True, exist_ok=True)
+
+    api = KaggleApi()
+    api.authenticate()
+
+    print(f"Downloading Avazu competition files into: {data_dir}")
+
+    api.competition_download_files(
+        competition="avazu-ctr-prediction",
+        path=str(data_dir),
+        quiet=False,
+        force=False,
+    )
+
+    print("Files after download:", [p.name for p in data_dir.iterdir()])
 
 
 def unzip_files(data_dir: Path):
