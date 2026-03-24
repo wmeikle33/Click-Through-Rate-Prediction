@@ -11,8 +11,8 @@ def split_features_label(df: pd.DataFrame, label: str) -> tuple[pd.DataFrame, pd
     return X, y
 
 def auto_preprocess(X: pd.DataFrame) -> ColumnTransformer:
-    num_cols = [c for c in X.columns if np.issubdtype(X[c].dtype, np.number)]
-    cat_cols = [c for c in X.columns if c not in num_cols]
+    num_cols = [c for c in X.columns if is_numeric_dtype(X[c])]
+    cat_cols = [c for c in X.columns if not is_numeric_dtype(X[c])]
     transformers = []
     if num_cols:
         transformers.append(("num", StandardScaler(with_mean=False), num_cols))
