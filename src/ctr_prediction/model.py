@@ -3,7 +3,7 @@ from pathlib import Path
 import pandas as pd
 from joblib import dump, load
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, roc_auc_score
+from sklearn.metrics import log_loss, roc_auc_score
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from .features import auto_preprocess, split_features_label
@@ -42,19 +42,25 @@ def train_eval_save(
 
     pipe.fit(X_train, y_train)
 
-    y_pred = pipe.predict(X_val)
-    metrics: dict[str, float] = {
-        "accuracy": float(accuracy_score(y_val, y_pred))
-    }
+    metrics: dict[str, float] = {}
 
-    if hasattr(pipe, "predict_proba") and y.nunique() == 2:
-        y_prob = pipe.predict_proba(X_val)[:, 1]
-        metrics["auc"] = float(roc_auc_score(y_val, y_prob))
+    if hasattr(pipe, "predict_proba"):
+        y_prob = pipe.predict_proba(X_val)
+        
+        if y.nunique() == 2:
+            pos_prob = y_prob[:, 1]
+            metrics["log_loss"] = float(log_loss(y_val, pos_prob))
+            metrics["auc"] = float(roc_auc_score(y_val, pos_prob))
+        else:
+            metrics["log_loss"] = float(log_loss(y_val, y_prob))
+    else:
+        raise ValueError("Pipeline does not support predict_proba(), required for CTR metrics.")
 
     Path(model_path).parent.mkdir(parents=True, exist_ok=True)
     dump(pipe, model_path)
 
     return metrics
+
 
 
 def load_model(path: str):
