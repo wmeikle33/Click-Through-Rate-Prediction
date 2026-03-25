@@ -34,7 +34,7 @@ def main():
     csv_path = Path(args.csv).expanduser().resolve()
     model_path = Path(args.model_out)
 
-    df = load_csv(csv_path)
+    df = load_csv(csv_path, nrows=args.nrows)
 
     if args.label not in df.columns:
         raise ValueError(f"Label column '{args.label}' not found in {csv_path}")
