@@ -38,7 +38,10 @@ def test_train_eval_save_writes_model_and_returns_metrics(tmp_path):
     )
 
     assert model_path.exists()
-    assert "accuracy" in metrics
+    assert "log_loss" in metrics
+    assert "auc" in metrics
+    assert 0.0 <= metrics["auc"] <= 1.0
+    assert metrics["log_loss"] >= 0.0
 
 
 def test_load_model_loads_saved_pipeline(tmp_path):
