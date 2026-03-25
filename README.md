@@ -73,6 +73,10 @@ python scripts/train.py --csv data/raw/train.gz --label click
 python scripts/predict.py --model models/model.joblib --input data/raw/test.gz --output predictions.csv
 ```
 
+```bash
+python scripts/submission.py
+```
+
 ## Project structure
 
 ```bash
