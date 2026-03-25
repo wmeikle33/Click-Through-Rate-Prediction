@@ -93,6 +93,8 @@ Click-Through-Rate-Prediction/
 ├── scripts/
 │   ├── train.py
 │   └── predict.py
+├── reports/
+├── notebooks/
 └── tests/
 
 
