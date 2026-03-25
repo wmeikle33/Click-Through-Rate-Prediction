@@ -7,6 +7,7 @@ from sklearn.metrics import log_loss, roc_auc_score
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from .features import auto_preprocess, split_features_label
+from .metrics import ctr_metrics
 
 
 def build_pipeline(X: pd.DataFrame) -> Pipeline:
@@ -46,15 +47,15 @@ def train_eval_save(
 
     if hasattr(pipe, "predict_proba"):
         y_prob = pipe.predict_proba(X_val)
-        
         if y.nunique() == 2:
             pos_prob = y_prob[:, 1]
-            metrics["log_loss"] = float(log_loss(y_val, pos_prob))
-            metrics["auc"] = float(roc_auc_score(y_val, pos_prob))
+            metrics = ctr_metrics(y_val, pos_prob)
         else:
-            metrics["log_loss"] = float(log_loss(y_val, y_prob))
+            metrics = {"log_loss": float(log_loss(y_val, y_prob))}
     else:
-        raise ValueError("Pipeline does not support predict_proba(), required for CTR metrics.")
+        raise ValueError(
+            "Pipeline does not support predict_proba(), required for CTR metrics."
+        )
 
     Path(model_path).parent.mkdir(parents=True, exist_ok=True)
     dump(pipe, model_path)
