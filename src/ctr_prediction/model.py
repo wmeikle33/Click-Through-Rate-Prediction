@@ -10,9 +10,37 @@ from .features import auto_preprocess, split_features_label
 from .metrics import ctr_metrics
 
 
-def build_pipeline(X: pd.DataFrame) -> Pipeline:
+def build_pipeline(
+    X: pd.DataFrame,
+    model_name: str = "logreg",
+    random_state: int = 42,
+) -> Pipeline:
     preprocessor = auto_preprocess(X)
-    classifier = LogisticRegression(max_iter=200)
+
+    if model_name == "logreg":
+        classifier = LogisticRegression(
+            max_iter=200,
+            random_state=random_state,
+        )
+    elif model_name == "xgb":
+        if XGBClassifier is None:
+            raise ImportError(
+                "XGBoost is not installed. Run: pip install -e '.[xgb]'"
+            )
+        classifier = XGBClassifier(
+            objective="binary:logistic",
+            eval_metric="logloss",
+            n_estimators=300,
+            max_depth=6,
+            learning_rate=0.1,
+            subsample=0.8,
+            colsample_bytree=0.8,
+            tree_method="hist",
+            random_state=random_state,
+            n_jobs=-1,
+        )
+    else:
+        raise ValueError(f"Unknown model_name={model_name!r}")
 
     return Pipeline(
         steps=[
