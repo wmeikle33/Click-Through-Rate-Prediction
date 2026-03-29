@@ -119,13 +119,27 @@ The original notebook had a binary logloss of 0.3984388029554979.
 
 ```
 
-To reproduce the baseline result shown above:
+## Reproduce the baseline
 
-1. Download Avazu `train.csv` and `test.csv` into `data/raw/`
-2. Create and activate the virtual environment
-3. Install dependencies:
-   ```bash
-   pip install -e .
-   pip install -r requirements.txt
+1. Clone the repo
+2. Create a virtual environment
+3. Install dependencies
+4. Put `train.csv` and `test.csv` in `data/raw/`
+5. Train the baseline model
+6. Generate predictions
+
+```bash
+git clone https://github.com/wmeikle33/Click-Through-Rate-Prediction.git
+cd Click-Through-Rate-Prediction
+
+python -m venv .venv
+source .venv/bin/activate
+pip install -e ".[data]"
+
+mkdir -p data/raw
+# place train.csv and test.csv in data/raw/
+
+ctr-train --csv data/raw/train.csv --label click
+ctr-predict --model models/model.joblib --input data/raw/test.csv --output predict
 
 ```
