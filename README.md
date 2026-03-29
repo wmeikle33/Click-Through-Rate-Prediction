@@ -25,7 +25,7 @@ Challenges:
 
 Competition: Avazu Click-Through Rate Prediction (Kaggle)
 
-Download `train.csv` and `test.csv` from the competition page and place them here:
+Download `train.gz` and `test.gz` from the competition page and place them here:
 
 data/raw/train.csv
 data/raw/test.csv
