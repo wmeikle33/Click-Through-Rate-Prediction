@@ -150,7 +150,7 @@ pip install -e ".[data]"
 mkdir -p data/raw
 # place train.csv and test.csv in data/raw/
 
-ctr-train --csv data/raw/train.csv --label click
+ctr-train --csv data/raw/train.csv --label click --model logreg --model-path models/logreg.joblib
 ctr-predict --model models/model.joblib --input data/raw/test.csv --output predict
 
 ```
