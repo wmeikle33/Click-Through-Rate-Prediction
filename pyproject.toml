@@ -26,6 +26,7 @@ dev = [
   "black>=24.0",
   "pre-commit>=3.0",
 ]
+xgb = ["xgboost>=3.0"]
 
 [project.scripts]
 ctr-train = "ctr_prediction.train:main"
