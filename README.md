@@ -68,8 +68,19 @@ cd Click-Through-Rate-Prediction
 python -m venv .venv
 source .venv/bin/activate
 pip install -e ".[data]"
-python scripts/download_data.py 
-python scripts/train.py --csv data/raw/train.gz --label click
+python scripts/download_data.py
+
+## Training different models
+
+### Logistic regression baseline
+```bash
+pip install -e .
+ctr-train --csv data/raw/train.csv --label click --model logreg --model-path models/logreg.joblib
+
+pip install -e ".[xgb]"
+ctr-train --csv data/raw/train.csv --label click --model xgb --model-path models/xg
+
+## Predict
 python scripts/predict.py --model models/model.joblib --input data/raw/test.gz --output predictions.csv
 ```
 
