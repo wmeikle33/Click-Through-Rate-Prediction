@@ -58,7 +58,7 @@ def train_eval_save(
 ) -> dict[str, float]:
     X, y = split_features_label(df, label)
 
-    pipe = build_pipeline(X)
+    pipe = build_pipeline(X, model_name=model_name, random_state=random_state)
 
     stratify = y if y.nunique() <= 20 else None
     X_train, X_val, y_train, y_val = train_test_split(
