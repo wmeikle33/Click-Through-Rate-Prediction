@@ -1,7 +1,7 @@
 # Click-Through Rate (CTR) Prediction
 
 This project tackles large-scale CTR prediction on a high-cardinality advertising dataset. The pipeline handles data loading, preprocessing, feature encoding, model training, validation, and Kaggle-style prediction export.
-CTR prediction is a very common machine learning problem with large, imbalanced, high cardinality datasets. Hence, contained in this repo is a a reproducible CTR prediction pipeline for the Kaggle Avazu dataset.  This repo trains a baseline click-through-rate model from `train.gz`, evaluates it on a validation split, and generates a Kaggle-style submission from `test.gz` and outputs the results to 'predictions.csv'.  The current baseline uses Logistic Regression with preprocessing for numeric and categorical features. This repository was originally generated from the notebook **Click Through Rate Prediction Final Submission.ipynb** and organized into a Python package + CLI scripts. You can keep the original notebook under `notebooks/` and iterate on the modular code in `src/` and `scripts/`.
+CTR prediction is a very common machine learning problem with large, imbalanced, high cardinality datasets. Hence, contained in this repo is a a reproducible CTR prediction pipeline for the Kaggle Avazu dataset.  This repo trains a baseline click-through-rate model from `train.gz`, evaluates it on a validation split, and generates a Kaggle-style submission from `test.gz` and outputs the results to 'predictions.csv'.  The current baseline uses Logistic Regression with preprocessing for numeric and categorical features. 
 
 ## Summary 
 
