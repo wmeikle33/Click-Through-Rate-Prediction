@@ -3,6 +3,20 @@
 This project tackles large-scale CTR prediction on a high-cardinality advertising dataset. The pipeline handles data loading, preprocessing, feature encoding, model training, validation, and Kaggle-style prediction export.
 CTR prediction is a very common machine learning problem with large, imbalanced, high cardinality datasets. Hence, contained in this repo is a a reproducible CTR prediction pipeline for the Kaggle Avazu dataset.  This repo trains a baseline click-through-rate model from `train.gz`, evaluates it on a validation split, and generates a Kaggle-style submission from `test.gz` and outputs the results to 'predictions.csv'.  The current baseline uses Logistic Regression with preprocessing for numeric and categorical features. 
 
+```md
+## ML pipeline
+
+```mermaid
+flowchart TD
+    A[Raw Avazu data<br/>train.csv / test.csv] --> B[Load data]
+    B --> C[Preprocessing]
+    C --> D[Categorical encoding]
+    D --> E[Train model]
+    E --> F[Evaluate on validation split]
+    F --> G[Generate test predictions]
+    G --> H[submission.csv]
+```
+
 ## Summary 
 
 Uses the Avazu CTR Kaggle dataset
