@@ -156,3 +156,4 @@ ctr-train --csv data/raw/train.csv --label click --model logreg --model-path mod
 ctr-predict --model models/model.joblib --input data/raw/test.csv --output predict
 
 ```
+This repository was originally generated from the notebook **Click Through Rate Prediction Final Submission.ipynb** and organized into a Python package + CLI scripts. You can keep the original notebook under `notebooks/` and iterate on the modular code in `src/` and `scripts/`.
