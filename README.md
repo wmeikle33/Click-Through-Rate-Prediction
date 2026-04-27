@@ -161,10 +161,10 @@ source .venv/bin/activate
 pip install -e ".[data]"
 
 mkdir -p data/raw
-# place train.csv and test.csv in data/raw/
+# place train.gz and test.gz in data/raw/
 
-ctr-train --csv data/raw/train.csv --label click --model logreg --model-path models/logreg.joblib
-ctr-predict --model models/model.joblib --input data/raw/test.csv --output predict
+ctr-train --csv data/raw/train.gz --label click --model logreg --model-path models/logreg.joblib
+ctr-predict --model models/model.joblib --input data/raw/test.gz --output predict
 
 ```
 This repository was originally generated from the notebook **Click Through Rate Prediction Final Submission.ipynb** and organized into a Python package + CLI scripts. You can keep the original notebook under `notebooks/` and iterate on the modular code in `src/` and `scripts/`.
