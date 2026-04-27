@@ -49,6 +49,7 @@ def main():
         df=df,
         label=args.label,
         model_path=model_path,
+        model_name=args.model,
         random_state=args.random_state,
         test_size=args.test_size,
     )
