@@ -89,7 +89,6 @@ python scripts/download_data.py
 ## Training different models
 
 ### Logistic regression baseline
-```bash
 pip install -e .
 ctr-train --csv data/raw/train.csv --label click --model logreg --model-path models/logreg.joblib
 
@@ -98,9 +97,7 @@ ctr-train --csv data/raw/train.csv --label click --model xgb --model-path models
 
 ## Predict
 python scripts/predict.py --model models/model.joblib --input data/raw/test.gz --output predictions.csv
-```
 
-```bash
 python scripts/submission.py
 ```
 
