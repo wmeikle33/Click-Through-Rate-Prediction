@@ -18,7 +18,7 @@ def parse_args():
     )
     ap.add_argument("--label", default="click", help="Target column")
     ap.add_argument(
-        "--model-out",
+        "--model-path",
         default=str(DEFAULT_MODEL_PATH),
         help="Saved model path",
     )
