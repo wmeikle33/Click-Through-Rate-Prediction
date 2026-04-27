@@ -53,6 +53,7 @@ def train_eval_save(
     df: pd.DataFrame,
     label: str,
     model_path: str,
+    model_name="logreg",
     random_state: int = 42,
     test_size: float = 0.2,
 ) -> dict[str, float]:
