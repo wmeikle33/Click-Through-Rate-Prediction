@@ -90,10 +90,10 @@ python scripts/download_data.py
 
 ### Logistic regression baseline
 pip install -e .
-ctr-train --csv data/raw/train.csv --label click --model logreg --model-path models/logreg.joblib
+ctr-train --csv data/raw/train.gz --label click --model logreg --model-path models/logreg.joblib
 
 pip install -e ".[xgb]"
-ctr-train --csv data/raw/train.csv --label click --model xgb --model-path models/xg
+ctr-train --csv data/raw/train.gz --label click --model xgb --model-path models/xg
 
 ## Predict
 python scripts/predict.py --model models/model.joblib --input data/raw/test.gz --output predictions.csv
