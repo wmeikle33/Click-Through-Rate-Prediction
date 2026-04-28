@@ -173,6 +173,6 @@ ctr-predict --model models/model.joblib --input data/raw/test.gz --output predic
 | Model                | Features        | Validation Log Loss |
 |---------------------|---------------|-------------------:|
 | Logistic Regression | Basic         | 0.462827            |
-| Logistic Regression | Engineered    | TBD                |
+| XGB Regression      | Engineered    | 0.405467            |
 | LightGBM            | All features  | TBD                |
 This repository was originally generated from the notebook **Click Through Rate Prediction Final Submission.ipynb** and organized into a Python package + CLI scripts. You can keep the original notebook under `notebooks/` and iterate on the modular code in `src/` and `scripts/`.
