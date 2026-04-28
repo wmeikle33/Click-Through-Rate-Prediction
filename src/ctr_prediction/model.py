@@ -13,7 +13,7 @@ from .metrics import ctr_metrics
 
 def build_pipeline(
     X: pd.DataFrame,
-    model_name: str = "logreg",
+    model_name: str,
     random_state: int = 42,
 ) -> Pipeline:
     preprocessor = auto_preprocess(X)
