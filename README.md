@@ -167,4 +167,12 @@ ctr-train --csv data/raw/train.gz --label click --model logreg --model-path mode
 ctr-predict --model models/model.joblib --input data/raw/test.gz --output predict
 
 ```
+
+## Results
+
+| Model                | Features        | Validation Log Loss |
+|---------------------|---------------|-------------------:|
+| Logistic Regression | Basic         | 0.462827            |
+| Logistic Regression | Engineered    | TBD                |
+| LightGBM            | All features  | TBD                |
 This repository was originally generated from the notebook **Click Through Rate Prediction Final Submission.ipynb** and organized into a Python package + CLI scripts. You can keep the original notebook under `notebooks/` and iterate on the modular code in `src/` and `scripts/`.
