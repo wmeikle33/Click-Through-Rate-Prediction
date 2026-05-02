@@ -10,6 +10,25 @@ from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from .features import auto_preprocess, split_features_label
 from .metrics import ctr_metrics
+from sklearn.model_selection import RandomSearchCV
+
+def get_param_distributions(model_name : str):
+    if model_name == 'logreg':
+        return {
+            "clf__C" : [0.01, 0.1, 1, 10],
+            "clf__penalty": ["l2"],
+        }
+    if model_name == "xgb":
+         return {
+            "clf__n_estimators": [200, 300, 500],
+            "clf__max_depth": [3, 5, 7],
+            "clf__learning_rate": [0.03, 0.05, 0.1],
+            "clf__subsample": [0.7, 0.8, 1.0],
+            "clf__colsample_bytree": [0.7, 0.8, 1.0],
+        }
+
+    raise ValueError(f"Unknown model_name={model_name!r}")
+        
 
 
 def build_pipeline(
