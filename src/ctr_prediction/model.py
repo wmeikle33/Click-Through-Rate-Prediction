@@ -91,7 +91,20 @@ def train_eval_save(
         stratify=stratify,
     )
 
-    pipe.fit(X_train, y_train)
+    if param_search:
+        search = RandomizedSearchCV(
+            pipe,
+            param_distributions=get_param_distributions(model_name),
+            n_iter=n_iter,
+            scoring="neg_log_loss",
+            cv=cv,
+            n_jobs=-1,
+            verbose=1,
+        )
+        search.fit(X_train, y_train)
+        pipe = search.best_estimator_
+    else:
+        pipe.fit(X_train, y_train)
 
     metrics: dict[str, float] = {}
 
