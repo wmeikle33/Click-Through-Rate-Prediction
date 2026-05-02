@@ -55,6 +55,9 @@ def main():
         model_name=args.model,
         random_state=args.random_state,
         test_size=args.test_size,
+        param_search=args.search,
+        n_iter=args.n_iter,
+        cv=args.cv,
     )
 
     print(f"Saved model to: {model_path}")
