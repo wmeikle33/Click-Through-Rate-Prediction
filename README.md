@@ -92,7 +92,7 @@ python scripts/download_data.py
 pip install -e .
 ctr-train --csv data/raw/train.gz --label click --model logreg --model-path models/logreg.joblib --search --n-iter 50 --cv 5
 
-pip install -e ".[xgb]"
+### XG Boost
 ctr-train --csv data/raw/train.gz --label click --model xgb --model-path models/xg --search --n-iter 50 --cv 5
 
 ## Predict
@@ -168,7 +168,7 @@ ctr-predict --model models/model.joblib --input data/raw/test.gz --output predic
 
 | Model                | Features        | Validation Log Loss |
 |---------------------|---------------|-------------------:|
-| Logistic Regression | Basic         | 0.462827            |
-| XGB Regression      | Engineered    | 0.405467            |
+| Logistic Regression | Basic         | 0.461831            |
+| XGB Regression      | Engineered    | 0.402742            |
 | LightGBM            | All features  | TBD                |
 This repository was originally generated from the notebook **Click Through Rate Prediction Final Submission.ipynb** and organized into a Python package + CLI scripts. You can keep the original notebook under `notebooks/` and iterate on the modular code in `src/` and `scripts/`.
