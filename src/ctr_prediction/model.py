@@ -10,7 +10,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from .features import auto_preprocess, split_features_label
 from .metrics import ctr_metrics
-from sklearn.model_selection import RandomSearchCV
 
 def get_param_distributions(model_name : str):
     if model_name == 'logreg':
