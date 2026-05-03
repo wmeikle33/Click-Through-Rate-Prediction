@@ -73,9 +73,10 @@ def train_eval_save(
     df: pd.DataFrame,
     label: str,
     model_path: str,
-    model_name="logreg",
+    model_name= str,
     random_state: int = 42,
     test_size: float = 0.2,
+    param_search: dict = None,
 ) -> dict[str, float]:
     X, y = split_features_label(df, label)
 
