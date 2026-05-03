@@ -77,6 +77,8 @@ def train_eval_save(
     random_state: int = 42,
     test_size: float = 0.2,
     param_search: dict = None,
+    n_iter: int,
+    cv: int,
 ) -> dict[str, float]:
     X, y = split_features_label(df, label)
 
