@@ -31,9 +31,9 @@ def parse_args():
         default="logreg",
         help="Which model to train.",
     )
-    parser.add_argument("--search", action="store_true", help="Enable hyperparameter search")
-    parser.add_argument("--n-iter", type=int, default=20, help="Number of parameter samples")
-    parser.add_argument("--cv", type=int, default=3, help="CV folds for search")
+    ap.add_argument("--search", action="store_true", help="Enable hyperparameter search")
+    ap.add_argument("--n-iter", type=int, default=20, help="Number of parameter samples")
+    ap.add_argument("--cv", type=int, default=3, help="CV folds for search")
     return ap.parse_args()
 
 
