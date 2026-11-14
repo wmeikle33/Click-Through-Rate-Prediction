@@ -59,6 +59,26 @@ def build_pipeline(
             random_state=random_state,
             n_jobs=-1,
         )
+    elif model_name == "lightgbm":
+        classifier = LGBMClassifier(
+            n_estimators=500,
+            learning_rate=0.05,
+            num_leaves=31,
+            objective="binary",
+            random_state=random_state,
+            verbosity=-1,
+        )
+
+    elif model_name == "catboost":
+        classifier = CatBoostClassifier(
+            iterations=500,
+            learning_rate=0.05,
+            depth=6,
+            loss_function="Logloss",
+            random_seed=random_state,
+            verbose=False,
+            allow_writing_files=False,
+        )
     else:
         raise ValueError(f"Unknown model_name={model_name!r}")
 
