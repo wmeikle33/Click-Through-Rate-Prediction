@@ -106,24 +106,86 @@ python scripts/submission.py
 ```bash
 
 Click-Through-Rate-Prediction/
+├── README.md
 ├── pyproject.toml
-├── pre_commit_config.yaml
 ├── requirements.txt
 ├── requirements-dev.txt
+├── config.py
+├── .gitignore
+├── .github/
+│   └── workflows/
+│       └── tests.yml
+│
+├── configs/
+│   ├── baseline.yaml
+│   ├── xgboost.yaml
+│   ├── lightgbm.yaml
+│   └── catboost.yaml
+│
+├── data/
+│   ├── raw/
+│   ├── processed/
+│   └── README.md
+│
 ├── src/
 │   └── ctr_prediction/
 │       ├── __init__.py
+│       ├── data.py
 │       ├── model.py
 │       ├── train.py
 │       ├── predict.py
-│       └── data.py
+│       │
+│       ├── features/
+│       │   ├── __init__.py
+│       │   ├── temporal.py
+│       │   ├── categorical.py
+│       │   └── interactions.py
+│       │
+│       ├── models/
+│       │   ├── __init__.py
+│       │   ├── logistic.py
+│       │   ├── xgboost_model.py
+│       │   ├── lightgbm_model.py
+│       │   └── catboost_model.py
+│       │
+│       ├── evaluation/
+│       │   ├── __init__.py
+│       │   ├── metrics.py
+│       │   ├── calibration.py
+│       │   ├── diagnostics.py
+│       │   └── comparison.py
+│       │
+│       └── utils/
+│           ├── __init__.py
+│           ├── logging_utils.py
+│           └── io.py
+│
 ├── scripts/
+│   ├── download_data.py
+│   ├── preprocess.py
 │   ├── train.py
-│   └── predict.py
-├── reports/
+│   ├── predict.py
+│   ├── evaluate.py
+│   └── submission.py
+│
 ├── notebooks/
-└── tests/
-
+│   ├── 01_eda.ipynb
+│   ├── 02_feature_engineering.ipynb
+│   └── 03_model_comparison.ipynb
+│
+├── reports/
+│   ├── figures/
+│   ├── experiments/
+│   └── model_comparison.md
+│
+├── tests/
+│   ├── test_data.py
+│   ├── test_features.py
+│   ├── test_models.py
+│   ├── test_evaluation.py
+│   └── test_pipeline.py
+│
+└── models/
 
 ```
 
