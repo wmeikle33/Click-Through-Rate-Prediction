@@ -1,7 +1,7 @@
 # Click-Through Rate (CTR) Prediction
 
 This project tackles large-scale CTR prediction on a high-cardinality advertising dataset. The pipeline handles data loading, preprocessing, feature encoding, model training, validation, and Kaggle-style prediction export.
-CTR prediction is a very common machine learning problem with large, imbalanced, high cardinality datasets. Hence, contained in this repo is a a reproducible CTR prediction pipeline for the Kaggle Avazu dataset.  This repo trains a baseline click-through-rate model from `train.gz`, evaluates it on a validation split, and generates a Kaggle-style submission from `test.gz` and outputs the results to 'predictions.csv'.  The current baseline uses Logistic Regression with preprocessing for numeric and categorical features. 
+CTR prediction is a very common machine learning problem with large, imbalanced, high cardinality datasets. Hence, contained in this repo is a a reproducible CTR prediction pipeline for the Kaggle Avazu dataset.  This repo trains a baseline click-through-rate model from `train.gz`, evaluates it on a validation split, and generates a Kaggle-style submission from `test.gz` and outputs the results to 'submissions.csv'.  The current baseline uses Logistic Regression with preprocessing for numeric and categorical features. 
 
 ```md
 ## ML pipeline
@@ -96,7 +96,7 @@ ctr-train --csv data/raw/train.gz --label click --model logreg --model-path mode
 ctr-train --csv data/raw/train.gz --label click --model xgb --model-path models/xg --search --n-iter 50 --cv 5
 
 ## Predict
-python scripts/predict.py --model models/model.joblib --input data/raw/test.gz --output predictions.csv
+python scripts/predict.py --model models/model.joblib --input data/raw/test.gz --output submissions.csv
 
 python scripts/submission.py
 ```
